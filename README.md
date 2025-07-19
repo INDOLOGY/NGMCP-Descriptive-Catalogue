@@ -15,7 +15,9 @@ For the cataloguing data, Hamburg University provided [this website](https://ngm
 
 In July 2025, Hamburg University deleted the Wiki.  After a hiatus of a few days, the University archived the data in a simplified form at [https://www-archiv.fdm.uni-hamburg.de/ngmcp/index.html](https://www-archiv.fdm.uni-hamburg.de/ngmcp/index.html). 
 
-This Github repository is a copy of that data.    Tyler Neill has also provided a mirror of the same data (https://github.com/tylergneill/ngmcp-wiki-mirror).
+This Github repository is a copy of that descriptive cataloguing data.  
+
+Tyler Neill has also provided a mirror of the same data (https://github.com/tylergneill/ngmcp-wiki-mirror).  The National Archives of Nepal also provides the shorter "index" data: (http://narchives.gov.np/List.aspx).
 
 ## Related project
 In a related program, the University of Heidelberg has a project entitled ["Documenta Nepalica: Documents on the History of Religion and Law of Pre-modern Nepal"](https://www.hadw-bw.de/en/research/research-center/documents-history-religion-and-law-pre-modern-nepal/) that focuses not on narrative and literary works, but on temple documents (edicts, land grants, contracts, deeds of donation, letters, etc.), legal documents (verdicts regarding moral conduct, letters granting absolution, caste regulations), and, to a much lesser extent, narrative or eulogical texts on local shrines.
