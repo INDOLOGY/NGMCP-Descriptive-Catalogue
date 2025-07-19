@@ -3,7 +3,7 @@
 This repository holds a mirror of the archived Hamburg University NGMCP-Wiki files.  Consult the data via this link:
 *  https://indology.github.io/NGMCP-Descriptive-Catalogue/
 
-I suggest that you copy the content of this repository to your own local storage (click [this link](https://github.com/INDOLOGY/NGMCP-Descriptive-Catalogue/archive/refs/heads/main.zip)) so that you can search titles and keywords locally on your own computer.
+I suggest that you copy the content of this repository to your own local storage (click [this link](https://github.com/INDOLOGY/NGMCP-Descriptive-Catalogue/archive/refs/heads/main.zip), 52MB) so that you can search titles and keywords locally on your own computer.
 
 # Explanation
 The Nepal-German manuscript preservation and cataloguing projects ran from 1970-2014.  The project surveyed the manuscript heritage of Nepal, microfilmed over a hundred thousand manuscripts, and provided descriptive information on these items. 
