@@ -7,8 +7,8 @@ The Nepal-German manuscript preservation and cataloguing projects ran from 1970-
 
 For fuller descriptions, see:
 
-*  The "NGMPP":  [The Nepal-German Manuscript Preservation Project](https://www.aai.uni-hamburg.de/en/forschung/ngmcp/history/about-ngmpp.html) (1970-2002). [Historical sketch by Ehrhard (1991)](http://himalaya.socanth.cam.ac.uk/collections/journals/ebhr/pdf/EBHR_02_03.pdf).
-*  The "NGMCP": [The Nepal-German Manuscript Cataloguing Project](https://www.aai.uni-hamburg.de/en/forschung/ngmcp) (2002-2014).
+*  The "NGMPP":  [The Nepal-German Manuscript **Preservation** Project](https://www.aai.uni-hamburg.de/en/forschung/ngmcp/history/about-ngmpp.html) (1970-2002). [Historical sketch by Ehrhard (1991)](http://himalaya.socanth.cam.ac.uk/collections/journals/ebhr/pdf/EBHR_02_03.pdf).
+*  The "NGMCP": [The Nepal-German Manuscript **Cataloguing** Project](https://www.aai.uni-hamburg.de/en/forschung/ngmcp) (2002-2014).
 
 For the cataloguing data, Hamburg University provided [this website](https://ngmcp.fdm.uni-hamburg.de/) that offered an [index](https://catalogue.ngmcp.uni-hamburg.de/content/search/ngmcpdocument.xed) (117,406 manuscripts) and a descriptive catalogue (nearly 16,000 manuscripts).  For the manuscripts it covers, the descriptive catalogue includes more detail than the index, including incipits and explicits.  This work was done by Diwakar Acharya, Kengo Harimoto, Andrey Klebanov and many other skilled scholars. The data was presented through a Wiki interface that permitted keyword searching.
 
