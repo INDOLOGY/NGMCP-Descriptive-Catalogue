@@ -71,6 +71,8 @@
   ol#results { list-style: none; margin: 0; padding: 0; max-width: 900px; }
   #results li { padding: .9em 0; border-bottom: 1px solid var(--line); }
   #results .name { font-size: 17px; }
+  #results .work { font-size: 16px; font-style: italic; }
+  #results .reel { font-size: 13px; }
   #results .meta { margin-top: .15em; font-size: 13px; line-height: 1.6; color: var(--muted); }
   #results .meta b { font-weight: 400; color: var(--text); }
   #results .snip { margin-top: .35em; font-size: 13px; line-height: 1.6; }
@@ -153,11 +155,11 @@
   "use strict";
   var PAGE = 50;
   var FIELDS = {
-    all:   ["name", "title", "auth", "subj", "reel", "acc", "lang", "script", "date", "scribe", "place", "king", "mat", "dep"],
-    title: ["name", "title"],
+    all:   ["ms", "name", "work", "title", "auth", "subj", "reel", "acc", "lang", "script", "date", "scribe", "place", "king", "mat", "dep"],
+    title: ["work", "title"],
     auth:  ["auth"],
     subj:  ["subj"],
-    reel:  ["reel", "acc", "name"],
+    reel:  ["reel", "acc", "ms", "name"],
     lang:  ["lang", "script"],
     date:  ["date"],
     other: ["scribe", "place", "king"]
@@ -228,7 +230,13 @@
   function run() {
     terms = parseQuery(q.value);
     // A reel or accession number such as "A 264/5" is one item, not separate words
-    if (field.value === "reel" && q.value.trim()) terms = [fold(q.value.replace(/"/g, "").trim())];
+    var exact = null;
+    if (field.value === "reel" && q.value.trim()) {
+      terms = [fold(q.value.replace(/"/g, "").trim())];
+      // ... and must not run on into further digits: "5/333" should not find "5/3334"
+      // "A 45-5" and "A 45/5" are the same reel
+      exact = new RegExp("(^|[^0-9])" + terms[0].replace(/[.*+?^${}()|[\]\\]/g, "\\$&").replace(/[-/]/g, "[-/]") + "(?![0-9])");
+    }
     var keys = FIELDS[field.value] || FIELDS.all;
     var useExc = exc.checked && excFolded;
     var url = new URL(location.href);
@@ -246,6 +254,7 @@
     hits = [];
     for (var i = 0; i < records.length; i++) {
       var h = haystack(i, keys), inExc = false, ok = true;
+      if (exact) { if (exact.test(h)) hits.push([i, false]); continue; }
       for (var t = 0; t < terms.length; t++) {
         if (h.indexOf(terms[t]) !== -1) continue;
         if (useExc && excFolded[i].indexOf(terms[t]) !== -1) { inExc = true; continue; }
@@ -261,10 +270,14 @@
   function showMore() {
     var html = "";
     hits.slice(shown, shown + PAGE).forEach(function (h) {
-      var r = records[h[0]], meta = [];
-      [["reel", "Reel"], ["auth", "Author"], ["subj", "Subject"], ["lang", "Language"], ["script", "Script"], ["date", "Date"], ["acc", "Acc. no."]]
-        .forEach(function (f) { if (r[f[0]]) meta.push(f[1] + ": <b>" + highlight(r[f[0]]) + "</b>"); });
-      html += "<li><a class=\"name\" href=\"" + encodeURIComponent(r.file) + "\">" + highlight(r.name) + "</a>" +
+      var r = records[h[0]], meta = [], work = r.work || r.name;
+      var fields = [["auth", "Author"], ["subj", "Subject"], ["lang", "Language"], ["script", "Script"], ["date", "Date"]];
+      // Without a shelfmark heading, show whatever number and place the record gives
+      if (!r.ms) fields.push(["acc", "Acc. no."], ["dep", "Place of deposit"]);
+      fields.forEach(function (f) { if (r[f[0]]) meta.push(f[1] + ": <b>" + highlight(r[f[0]]) + "</b>"); });
+      html += "<li><a class=\"name\" href=\"" + encodeURIComponent(r.file) + "\">" + highlight(r.ms || work) + "</a>" +
+        (r.ms ? "<div class=\"work\">" + highlight(work) + "</div>" : "") +
+        (r.reel ? "<div class=\"reel\">Microfilm reel no. " + highlight(r.reel) + "</div>" : "") +
         "<div class=\"meta\">" + meta.join(" · ") + "</div>" +
         (h[1] && excerpts ? "<div class=\"snip\">" + snippet(excerpts[h[0]]) + "</div>" : "") + "</li>";
     });

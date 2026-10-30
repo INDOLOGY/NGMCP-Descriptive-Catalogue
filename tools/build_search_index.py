@@ -70,6 +70,28 @@ def section(body, start_id, end_ids):
     return re.sub(r"<[^>]*$", "", rest[:end])            # drop a half-cut tag at the end
 
 
+# A reel number at the start of a page name, e.g. "A 0264-05 ", "A 0128-14 (3) ",
+# "E 168-29 to E 169-1(1) ", "A 0122-02=A 0859-02 ", "1311-22(1) "
+REEL_PREFIX = re.compile(
+    r"^(?:[A-Z]\s?)?\d+[\s-]+\d+[a-z]?(?:\s*\(\d+\))?"
+    r"(?:\s*(?:=|to|-|and)\s*(?:[A-Z]\s?)?\d+[\s-]+\d+[a-z]?(?:\s*\(\d+\))?)*\s+")
+NO_NUMBER = re.compile(r"^(not\b|\?|unknown|none|-)", re.I)
+
+
+def shelfmark(rec, main_acc):
+    """'MS Kathmandu NAK 1/1520' etc., or '' when there is no usable number."""
+    acc = rec.get("acc", "")
+    dep = rec.get("dep", "")
+    if acc.startswith(("NAK ", "Kesar ")):
+        return "MS Kathmandu " + acc
+    cand = acc or main_acc or ""
+    if not cand or NO_NUMBER.match(cand):
+        return ""
+    if re.match(r"^\d+[-/]\d+", cand) and (dep.startswith("NAK") or not dep):
+        return "MS Kathmandu NAK " + re.sub(r"^(\d+)-(\d+)", r"\1/\2", cand)
+    return ""
+
+
 def parse(path):
     t = open(path, encoding="utf-8", errors="replace").read()
     m = re.search(r'id="mw-content-text"(.*?)<!--\s*\nNewPP', t, re.S)
@@ -94,6 +116,16 @@ def parse(path):
             v = clean(mm.group(1))
             if v:
                 rec[key] = v
+
+    mm = re.search(r"<p><b>Accession No\.:?</b>(.*?)</p>", body, re.S)
+    ms = shelfmark(rec, clean(mm.group(1)) if mm else "")
+    if ms:
+        rec["ms"] = ms
+    work = REEL_PREFIX.sub("", rec["name"], count=1)
+    if work != rec["name"] and work:
+        rec["work"] = work
+    elif rec.get("title"):
+        rec["work"] = rec["title"]
 
     exc = section(body, "Excerpts", ["Microfilm_Details"])
     exc = re.sub(r"^[^<]*</span>\s*</h2>", "", exc)       # drop the section heading itself
