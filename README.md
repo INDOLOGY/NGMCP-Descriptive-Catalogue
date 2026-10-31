@@ -1,10 +1,6 @@
 # NGMCP Descriptive Catalogue
 
-This repository holds a mirror of the archived Hamburg University NGMCP-Wiki files.  Consult the data via this link:
-*  https://indology.github.io/NGMCP-Descriptive-Catalogue/
-
-I suggest that you copy the content of this repository to your own local storage (click [this link](https://github.com/INDOLOGY/NGMCP-Descriptive-Catalogue/archive/refs/heads/main.zip), 52MB) so that you can search titles and keywords locally on your own computer.
-
+This repository provides a search and display interface for the archived Hamburg University NGMCP-Wiki files.  
 # Explanation
 The Nepal-German manuscript preservation and cataloguing projects ran from 1970-2014.  The project surveyed the manuscript heritage of Nepal, microfilmed over a hundred thousand manuscripts, and provided descriptive information on these items. 
 
@@ -15,9 +11,9 @@ For fuller descriptions, see:
 
 For the cataloguing data, Hamburg University provided [this website](https://ngmcp.fdm.uni-hamburg.de/) that offered an [index](https://catalogue.ngmcp.uni-hamburg.de/content/search/ngmcpdocument.xed) (117,406 manuscripts) and a descriptive catalogue (nearly 16,000 manuscripts).  For the manuscripts it covers, the descriptive catalogue provides more detail than the index, including incipits and explicits.  This work was done by Diwakar Acharya, Kengo Harimoto, Andrey Klebanov and many other skilled scholars. The data was presented through a Wiki interface that permitted keyword searching.
 
-In July 2025, Hamburg University deleted the Wiki.  After a hiatus of a few days, the University archived the data in a simplified form at [https://www-archiv.fdm.uni-hamburg.de/ngmcp/index.html](https://www-archiv.fdm.uni-hamburg.de/ngmcp/index.html). 
+In July 2025, **Hamburg University deleted the Wiki**.  After a hiatus of a few days, and horrified correspondence from indological scholars, the University archived the data in a simplified form at [https://www-archiv.fdm.uni-hamburg.de/ngmcp/index.html](https://www-archiv.fdm.uni-hamburg.de/ngmcp/index.html).  I has now been possible to rescue and improve the accessibility of that data. 
 
-This Github repository is a copy of that descriptive cataloguing data.  
+This Github repository is based on that descriptive cataloguing data.  
 
 Tyler Neill has also provided a mirror of the same data (https://github.com/tylergneill/ngmcp-wiki-mirror).  The National Archives of Nepal also provides the shorter "index" data: (http://narchives.gov.np/List.aspx).
 
